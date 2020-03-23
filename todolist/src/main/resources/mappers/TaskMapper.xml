@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.demo.Mapper.TaskMapper">
+
+    <!--id对应接口中的方法，名字要一样，parameterType是方法的参数类型，
+    resultType是查询返回的类型，需要注意的是，这里的SQL语句后面不能加分号，变量不能加引号-->
+    <select id="getTasks"  resultType="Task">
+        select * from task order by #{id}
+    </select>
+
+    <select id="getById" parameterType="int" resultType="Task">
+        select * from task where id = #{id}
+    </select>
+
+    <update id="InsertTask" parameterType="Task">
+        insert into user(id,content,createdTime) values(#{id},#{content}#{createdTime})
+    </update>
+
+    <delete id="deleteAllTasks">
+        delete from task
+    </delete>
+
+    <delete id="deleteTask" parameterType="int">
+        delete from task where id = #{id}
+    </delete>
+
+</mapper>
